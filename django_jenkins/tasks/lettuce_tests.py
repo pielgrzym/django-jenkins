@@ -27,6 +27,7 @@ class Task(BaseTask):
         self.output_dir = options['output_dir']
 
     def setup_test_environment(self, **kwargs):
+        registry.call_hook('before', 'runserver', locals())
         if self.lettuce_server:
             from lettuce.django import server
             self.server = server
